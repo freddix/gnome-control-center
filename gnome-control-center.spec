@@ -1,12 +1,12 @@
 Summary:	GNOME Control Center
 Name:		gnome-control-center
-Version:	3.6.2
+Version:	3.6.3
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	0bb96e62b3803a779832518a841fc769
+# Source0-md5:	13474a477658ccbca7484918edfc19d3
 Patch0:		%{name}-no-krb5.patch
 Patch1:		%{name}-locale-archive.patch
 URL:		http://www.gnome.org/
