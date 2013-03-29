@@ -1,12 +1,12 @@
 Summary:	GNOME Control Center
 Name:		gnome-control-center
-Version:	3.6.3
+Version:	3.8.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	13474a477658ccbca7484918edfc19d3
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.8/%{name}-%{version}.tar.xz
+# Source0-md5:	de81d26dfeaf197100f47c2eef4599e9
 Patch0:		%{name}-no-krb5.patch
 Patch1:		%{name}-locale-archive.patch
 URL:		http://www.gnome.org/
@@ -41,11 +41,11 @@ BuildRequires:	xorg-libXxf86misc-devel
 BuildRequires:	xorg-libxkbfile-devel
 Requires(post,postun):	/usr/bin/gtk-update-icon-cache
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	rarian
-Requires(post,postun):	shared-mime-info
 Requires:	gnome-settings-daemon
 Requires:	gstreamer-plugins-base
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_libexecdir	%{_libdir}/gnome-control-center
 
 %description
 A Configuration tool for easily setting up your GNOME environment.
@@ -60,7 +60,7 @@ GNOME Control-Center header files.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 
 # kill gnome common deps
 sed -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
@@ -73,7 +73,7 @@ sed -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4 -I libgd
 %{__autoheader}
 %{__autoconf}
 %{__automake}
@@ -94,65 +94,43 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm $RPM_BUILD_ROOT%{_libdir}/control-center-1/panels/*.la
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,en@shaw,ha,ig,la}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,en@shaw}
 
-%find_lang %{name} --with-gnome --with-omf --all-name
+%find_lang %{name} --with-gnome --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%update_mime_database
-%update_desktop_database_post
+%update_desktop_database
 %update_icon_cache hicolor
 
 %postun
-%update_desktop_database_postun
-%update_mime_database
+%update_desktop_database
 %update_icon_cache hicolor
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gnome-control-center
-%attr(755,root,root) %{_bindir}/gnome-sound-applet
 
-%dir %{_libdir}/control-center-1
-%dir %{_libdir}/control-center-1/panels
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libbackground.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libbluetooth.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libcolor.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libdate_time.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libdisplay.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libinfo.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libkeyboard.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libmouse-properties.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libnetwork.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libonline-accounts.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libregion.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libsound.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libpower.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libprinters.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libscreen.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libuniversal-access.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libuser-accounts.so
-%attr(755,root,root) %{_libdir}/control-center-1/panels/libwacom-properties.so
+%dir %{_libexecdir}
+%attr(755,root,root) %{_libexecdir}/cc-remote-login-helper
+%attr(755,root,root) %{_libexecdir}/gnome-control-center-search-provider
 
 %{_datadir}/polkit-1/actions/org.gnome.controlcenter.datetime.policy
+%{_datadir}/polkit-1/actions/org.gnome.controlcenter.remote-login-helper.policy
 %{_datadir}/polkit-1/actions/org.gnome.controlcenter.user-accounts.policy
 %{_datadir}/polkit-1/rules.d/gnome-control-center.rules
 
+%{_datadir}/dbus-1/services/org.gnome.ControlCenter.SearchProvider.service
 %{_datadir}/gnome-control-center
+%{_datadir}/gnome-shell/search-providers/gnome-control-center-search-provider.ini
 %{_datadir}/sounds/gnome
-%{_datadir}/desktop-directories/*.directory
 
 %{_iconsdir}/hicolor/*/*/*.*
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/faces
-
-%{_sysconfdir}/xdg/autostart/gnome-sound-applet.desktop
-%{_sysconfdir}/xdg/menus/gnomecc.menu
 
 %{_mandir}/man1/gnome-control-center.1*
 
