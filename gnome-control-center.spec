@@ -1,14 +1,13 @@
 Summary:	GNOME Control Center
 Name:		gnome-control-center
-Version:	3.8.2
+Version:	3.8.3
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	48cefe86a8f40697b92d1d716ba3f3fa
+# Source0-md5:	0c8bc498c012e247894486b09838a34a
 Patch0:		%{name}-no-krb5.patch
-Patch1:		%{name}-locale-archive.patch
 URL:		http://www.gnome.org/
 BuildRequires:	NetworkManager-applet-devel
 BuildRequires:	alsa-lib-devel
@@ -60,10 +59,9 @@ GNOME Control-Center header files.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
 
 # kill gnome common deps
-sed -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
+%{__sed} -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
     -i -e 's/GNOME_MAINTAINER_MODE_DEFINES//g'	\
     -i -e 's/GNOME_COMMON_INIT//g'		\
     -i -e 's/GNOME_DEBUG_CHECK//g' configure.ac
