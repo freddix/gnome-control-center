@@ -1,12 +1,12 @@
 Summary:	GNOME Control Center
 Name:		gnome-control-center
-Version:	3.8.4.1
+Version:	3.8.5
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	616b177a202dc9317e2394f68f54364b
+# Source0-md5:	26cacddb0fd7c61365df8025b944e6c0
 Patch0:		%{name}-no-krb5.patch
 URL:		http://www.gnome.org/
 BuildRequires:	NetworkManager-applet-devel
