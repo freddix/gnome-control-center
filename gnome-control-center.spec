@@ -1,42 +1,42 @@
 Summary:	GNOME Control Center
 Name:		gnome-control-center
-Version:	3.8.5
+Version:	3.10.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	26cacddb0fd7c61365df8025b944e6c0
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.10/%{name}-%{version}.tar.xz
+# Source0-md5:	1237d6763cc7665d64439dccc4bce999
 Patch0:		%{name}-no-krb5.patch
 URL:		http://www.gnome.org/
-BuildRequires:	NetworkManager-applet-devel
-BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	cheese-devel
 BuildRequires:	colord-gtk-devel
 BuildRequires:	dbus-glib-devel
-BuildRequires:	evolution-data-server-devel
+BuildRequires:	evolution-data-server-devel >= 3.10.0
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel
+BuildRequires:	gnome-desktop-devel >= 3.10.0
 BuildRequires:	gnome-doc-utils
 BuildRequires:	gnome-menus-devel
-BuildRequires:	gnome-settings-daemon-devel
-BuildRequires:	gsettings-desktop-schemas-devel
-BuildRequires:	gstreamer-plugins-base-devel
+BuildRequires:	gnome-settings-daemon-devel >= 1:3.10.0
+BuildRequires:	gsettings-desktop-schemas-devel >= 3.10.0
+BuildRequires:	gstreamer-plugins-base-devel >= 1.2.0
 BuildRequires:	intltool
-BuildRequires:	libcanberra-gtk-devel
+BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libgtop-devel
 BuildRequires:	libpwquality-devel
 BuildRequires:	libsocialweb-devel
 BuildRequires:	libtool
 BuildRequires:	libwacom-devel
 BuildRequires:	libxml2-devel
-BuildRequires:	nautilus-devel
+BuildRequires:	nautilus-devel >= 3.10.0
 BuildRequires:	polkit-devel
+BuildRequires:	pulseaudio-devel
 BuildRequires:	tzdata
+BuildRequires:	upower-devel
 BuildRequires:	xorg-libXxf86misc-devel
 BuildRequires:	xorg-libxkbfile-devel
 Requires(post,postun):	/usr/bin/gtk-update-icon-cache
@@ -123,6 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/polkit-1/rules.d/gnome-control-center.rules
 
 %{_datadir}/dbus-1/services/org.gnome.ControlCenter.SearchProvider.service
+%{_datadir}/dbus-1/services/org.gnome.ControlCenter.service
 %{_datadir}/gnome-control-center
 %{_datadir}/gnome-shell/search-providers/gnome-control-center-search-provider.ini
 %{_datadir}/sounds/gnome
