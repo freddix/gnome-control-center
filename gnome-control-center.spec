@@ -1,13 +1,14 @@
 Summary:	GNOME Control Center
 Name:		gnome-control-center
-Version:	3.10.0
+Version:	3.10.1
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.10/%{name}-%{version}.tar.xz
-# Source0-md5:	1237d6763cc7665d64439dccc4bce999
+# Source0-md5:	0fc5b06af19d57d13f7f94df51a6a805
 Patch0:		%{name}-no-krb5.patch
+Patch1:		%{name}-buildfix.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -60,6 +61,7 @@ GNOME Control-Center header files.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 # kill gnome common deps
 %{__sed} -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
@@ -85,7 +87,7 @@ GNOME Control-Center header files.
 	--enable-systemd	\
 	--with-cheese		\
 	--with-libsocialweb
-%{__make}
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
