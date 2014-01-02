@@ -1,12 +1,12 @@
 Summary:	GNOME Control Center
 Name:		gnome-control-center
-Version:	3.10.1
+Version:	3.10.2
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.10/%{name}-%{version}.tar.xz
-# Source0-md5:	0fc5b06af19d57d13f7f94df51a6a805
+# Source0-md5:	b6586da17988b918f367a7ad5cb95136
 Patch0:		%{name}-no-krb5.patch
 Patch1:		%{name}-buildfix.patch
 URL:		http://www.gnome.org/
