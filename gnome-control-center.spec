@@ -1,12 +1,12 @@
 Summary:	GNOME Control Center
 Name:		gnome-control-center
-Version:	3.10.2
+Version:	3.10.3
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.10/%{name}-%{version}.tar.xz
-# Source0-md5:	b6586da17988b918f367a7ad5cb95136
+# Source0-md5:	bc79b911307c03da27c466756ed553d1
 Patch0:		%{name}-no-krb5.patch
 Patch1:		%{name}-buildfix.patch
 URL:		http://www.gnome.org/
@@ -20,7 +20,6 @@ BuildRequires:	evolution-data-server-devel >= 3.10.0
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 3.10.0
-BuildRequires:	gnome-doc-utils
 BuildRequires:	gnome-menus-devel
 BuildRequires:	gnome-settings-daemon-devel >= 1:3.10.0
 BuildRequires:	gsettings-desktop-schemas-devel >= 3.10.0
@@ -70,7 +69,6 @@ GNOME Control-Center header files.
     -i -e 's/GNOME_DEBUG_CHECK//g' configure.ac
 
 %build
-%{__gnome_doc_prepare}
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
