@@ -1,15 +1,16 @@
 Summary:	GNOME Control Center
 Name:		gnome-control-center
-Version:	3.12.1
+Version:	3.14.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	412daa52c78f7ee5224c30e82128a02e
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.14/%{name}-%{version}.tar.xz
+# Source0-md5:	8650a8975dabd6fbea256be4583f9bb3
 URL:		http://www.gnome.org/
 BuildRequires:	ModemManager-devel
 BuildRequires:	NetworkManager-applet-devel
+BuildRequires:	accountsservice-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
@@ -19,21 +20,21 @@ BuildRequires:	dbus-glib-devel
 BuildRequires:	evolution-data-server-devel >= 3.12.0
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 3.12.0
+BuildRequires:	gnome-desktop-devel >= 3.14.0
 BuildRequires:	gnome-menus-devel
-BuildRequires:	gnome-settings-daemon-devel >= 1:3.12.0
-BuildRequires:	gsettings-desktop-schemas-devel >= 3.12.0
-BuildRequires:	gstreamer-plugins-base-devel >= 1.2.0
+BuildRequires:	gnome-settings-daemon-devel >= 1:3.14.0
+BuildRequires:	grilo-devel
+BuildRequires:	gsettings-desktop-schemas-devel >= 3.14.0
+BuildRequires:	gstreamer-plugins-base-devel >= 1.4.0
 BuildRequires:	intltool
 BuildRequires:	krb5-devel
 BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libgtop-devel
 BuildRequires:	libpwquality-devel
-BuildRequires:	libsocialweb-devel
 BuildRequires:	libtool
 BuildRequires:	libwacom-devel
 BuildRequires:	libxml2-devel
-BuildRequires:	nautilus-devel >= 3.12.0
+BuildRequires:	nautilus-devel >= 3.14.0
 BuildRequires:	polkit-devel
 BuildRequires:	pulseaudio-devel
 BuildRequires:	tzdata
@@ -42,8 +43,10 @@ BuildRequires:	xorg-libXxf86misc-devel
 BuildRequires:	xorg-libxkbfile-devel
 Requires(post,postun):	/usr/bin/gtk-update-icon-cache
 Requires(post,postun):	desktop-file-utils
+Requires:	accountsservice
 Requires:	gnome-settings-daemon
 Requires:	gstreamer-plugins-base
+Requires:	libcanberra-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libexecdir	%{_libdir}/gnome-control-center
