@@ -1,12 +1,12 @@
 Summary:	GNOME Control Center
 Name:		gnome-control-center
-Version:	3.14.0
+Version:	3.14.1
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.14/%{name}-%{version}.tar.xz
-# Source0-md5:	8650a8975dabd6fbea256be4583f9bb3
+# Source0-md5:	80ac2767307691a36a13b9f3cae68c51
 URL:		http://www.gnome.org/
 BuildRequires:	ModemManager-devel
 BuildRequires:	NetworkManager-applet-devel
